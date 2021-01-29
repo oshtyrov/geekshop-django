@@ -3,7 +3,7 @@ from django.shortcuts import render
 from mainapp.models import Product, ProductCategory
 
 
-def main(request):
+def index(request):
     content = {
         'title': 'GeekShop'
     }
