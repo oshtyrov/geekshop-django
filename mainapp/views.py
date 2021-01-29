@@ -1,15 +1,20 @@
 from django.shortcuts import render
 
+from mainapp.models import Product, ProductCategory
 
-# Create your views here.
-# контроллер = функция
-# MVC - Model Viev Controller
-# Jango - MVT = Model Viev Template
-# вьюха = контроллер = функция
 
-def index(request):
-    return render(request, 'mainapp/index.html')
+def main(request):
+    content = {
+        'title': 'GeekShop'
+    }
+    return render(request, 'mainapp/index.html', content)
 
 
 def products(request):
-    return render(request, 'mainapp/products.html')
+    content = {
+        'title': 'GeekShop - Категории',
+        'products': Product.objects.all(),
+        'categories': ProductCategory.objects.all(),
+
+    }
+    return render(request, 'mainapp/products.html', content)
