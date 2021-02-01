@@ -10,7 +10,7 @@ def index(request):
     return render(request, 'mainapp/index.html', content)
 
 
-def products(request):
+def products(request, id=None):
     content = {
         'title': 'GeekShop - Категории',
         'products': Product.objects.all(),
