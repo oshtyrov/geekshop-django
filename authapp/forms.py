@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from django.core.exceptions import ValidationError
-from authapp.models import User
 from django import forms
+
+from authapp.models import User
 
 
 class UserLoginForm(AuthenticationForm):
@@ -33,12 +33,6 @@ class UserRegisterForm(UserCreationForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control py-4'
 
-    def clean_age(self):
-        age = self.cleaned_data['age']
-        if age < 18:
-            raise ValidationError('Вы должны быть совершеннолетним', code='invalid_age')
-        return age
-
 
 class UserProfileForm(UserChangeForm):
     avatar = forms.ImageField(widget=forms.FileInput())
@@ -49,8 +43,8 @@ class UserProfileForm(UserChangeForm):
 
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control py-4'
         self.fields['username'].widget.attrs['readonly'] = True
         self.fields['email'].widget.attrs['readonly'] = True
         self.fields['avatar'].widget.attrs['class'] = 'custom-file-input'
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control py-4'
