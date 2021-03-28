@@ -20,6 +20,7 @@
            <th>Создан</th>
            <th>Обновлен</th>
            <th>Статус</th>
+           <th>Общая стоимость</th>
          </tr>
        </thead>
        <tbody>
@@ -30,6 +31,7 @@
                    <td>{{ item.created|date:"Y-m-d H:i:s" }}</td>
                    <td>{{ item.updated|date:"Y-m-d H:i:s" }}</td>
                    <td>{{ item.get_status_display }}</td>
+                   <td>{{ item.get_total_cost }} руб.</td>
                    <td>
                        <a href="{% url 'ordersapp:order_read' item.pk %}">
                            посмотреть
