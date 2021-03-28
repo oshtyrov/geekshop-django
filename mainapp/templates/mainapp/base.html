@@ -43,6 +43,11 @@
                     <a class="nav-link" href="{% url 'ordersapp:orders_list' %}">Заказы
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        В корзине {{ basket_count }} товаров
+                    </a>
+                </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'auth:profile' %}">{{ user.username }}
