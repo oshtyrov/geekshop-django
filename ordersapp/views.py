@@ -122,3 +122,7 @@ class JustView(View):
 
     def get(self, request):
         return HttpResponse('aaaa')
+
+
+def simple_view(request):
+    return HttpResponse('aaaa')

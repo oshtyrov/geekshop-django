@@ -7,6 +7,15 @@ from datetime import timedelta
 from django.utils.timezone import now
 
 
+class UserQuerySet(models.QuerySet):
+
+    def active_users(self):
+        return self.filter(username__srartswith=True)
+
+    def in_active_users(self):
+        return self.filter()
+
+
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='users_avatar', blank=True)
     age = models.SmallIntegerField(blank=True, null=True, default=18)
