@@ -3,8 +3,10 @@
 
 
 {% block content %}
-   <div class="h2 text-center head">
-       Ваши заказы, 
+
+  <div class="container my-4">
+   <div class="h2 text-center row">
+       Ваши заказы,
        {% if user.first_name %}
            {{ user.first_name|title}}
        {% else %}
@@ -62,4 +64,6 @@
            новый
        </a>
    </button>
+  </div>
+
 {% endblock %}

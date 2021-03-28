@@ -1,16 +1,18 @@
-from django.db import models
-from django.dispatch import receiver
-from django.db.models.signals import pre_save
 from datetime import timedelta
-from authapp.models import User
+from django.db import models
 from django.utils.timezone import now
+
+from authapp.models import User
 from mainapp.models import Product
 
 
 class BasketQuerySet(models.QuerySet):
 
-    # def count_gt_2(self):
-    #     return self.filter(quantity__gt=2)
+    def count_gt_2(self):
+        return self.filter(quantity__gt=2)
+
+    def count_lt_2(self):
+        return self.filter(quantity__lt=2)
 
     def delete(self):
         for object in self:
@@ -22,6 +24,7 @@ class BasketQuerySet(models.QuerySet):
 
 
 class Basket(models.Model):
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
@@ -46,6 +49,7 @@ class Basket(models.Model):
     def delete(self, using=None, keep_parents=False):
         self.product.quantity += self.quantity
         self.product.save()
+
         super().delete()
 
     def refresh_quantity(self):
@@ -58,11 +62,3 @@ class Basket(models.Model):
     def save(self, *args):
         self.refresh_quantity()
         super().save(*args)
-
-# @receiver(pre_save, sender=Basket):
-#     def product_quantity_update(sender, update_fields, instance, **kwargs):
-#         if instance.pk:
-#             instance.product.quantity -= instance.quantity - instance.objects.get(pk=instance.pk).quantity
-#         else:
-#             instance.product.quantity -= instance.quantity
-#         instance.product.save()
