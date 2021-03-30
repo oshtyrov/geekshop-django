@@ -18,7 +18,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     {% block css %} {% endblock %}
 
 </head>
@@ -41,6 +41,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'ordersapp:orders_list' %}">Заказы
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        В корзине {{ basket_count }} товаров
                     </a>
                 </li>
                 {% if user.is_authenticated %}
