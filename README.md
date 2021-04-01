@@ -1,4 +1,3 @@
 ### GeekShop
-social_auth_app_django==3.4.0
-requests==2.25.1
+http://194.67.90.189:8000/
 
