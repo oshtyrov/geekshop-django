@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     'social_django',
     'debug_toolbar',
-    # 'django_extensions',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

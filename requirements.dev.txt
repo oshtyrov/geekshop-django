@@ -5,3 +5,4 @@ requests==2.25.1
 psycopg2-binary
 django-debug-toolbar
 django-debug-toolbar-template-profiler
+django-extensions
