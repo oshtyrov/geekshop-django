@@ -27,7 +27,7 @@ class Order(models.Model):
                               max_length=3,
                               choices=ORDER_STATUS_CHOICES,
                               default=FORMING)
-    is_active = models.BooleanField(verbose_name='активен', default=True)
+    is_active = models.BooleanField(verbose_name='активен', default=True, db_index=True)
 
     class Meta:
         ordering = ('-created',)
@@ -57,6 +57,15 @@ class Order(models.Model):
 
         self.is_active = False
         self.save()
+
+    def get_summary(self):
+        items = self.orderitems.select_related()
+        total_cost = sum(list(map(lambda x: x.get_product_cost(), items)))
+        total_quantity = sum(list(map(lambda x: x.quantity, items)))
+        return {
+            'total_cost': total_cost,
+            'total_quantity': total_quantity,
+        }
 
 
 class OrderItem(models.Model):
