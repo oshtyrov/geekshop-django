@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 import json
 import os
+import sys  
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -195,10 +196,10 @@ LOGIN_URL = '/auth/login/'
 
 DOMAIN_NAME = 'http://localhost:8000'
 
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'почта'
-EMAIL_HOST_PASSWORD = 'пароль'
+    EMAIL_HOST = 'smtp.mail.ru'
+    EMAIL_PORT = '465'
+    EMAIL_HOST_USER = 'почта'
+    EMAIL_HOST_PASSWORD = 'пароль'
 
 EMAIL_USE_SSL = True
 
